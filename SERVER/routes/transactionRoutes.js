@@ -15,7 +15,7 @@ const { fetchTransactions } = require('../controllers/transactionController');
 // });
 router.get('/', async (req, res) => {
   try {
-    const address = req.query.address;
+    const address = req.query.address.toLowerCase();
     if (!address) {
       return res.status(400).json({ error: 'Address parameter is required' });
     }

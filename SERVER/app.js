@@ -1,12 +1,22 @@
 const express = require('express');
 const transactionRoutes = require('./routes/transactionRoutes');
-require('./db'); // Connect to MongoDB
-require('./schedule'); // Start the scheduler
+const userRoutes = require('./routes/userRoutes');
+const { jsonParser } = require('./middleware');
+require('./db');
+require('./schedule');
 require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-console.log(process.env.PORT,"log port")
+
+// Routes
 app.use('/api/transactions', transactionRoutes);
+app.use('/api/user', jsonParser, userRoutes); // Use jsonParser middleware
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal server error' });
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
