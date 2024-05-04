@@ -1,8 +1,8 @@
 const express = require('express');
-const db = require('./db');
-require('dotenv').config();
 const transactionRoutes = require('./routes/transactionRoutes');
-
+require('./db'); // Connect to MongoDB
+require('./schedule'); // Start the scheduler
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 console.log(process.env.PORT,"log port")
