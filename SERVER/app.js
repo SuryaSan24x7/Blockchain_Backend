@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 // Routes
 app.use('/api/transactions', transactionRoutes);
-app.use('/api/user', jsonParser, userRoutes); // Use jsonParser middleware
+app.use('/api/user', jsonParser, userRoutes); 
 
 // Error handling middleware
 app.use((err, req, res, next) => {

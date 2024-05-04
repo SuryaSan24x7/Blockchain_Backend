@@ -15,5 +15,5 @@ cron.schedule('*/10 * * * *', async () => {
   await fetchAndStoreEthereumPrice();
 }, {
   scheduled: true,
-  timezone: 'Asia/Kolkata' // Set your timezone here
+  timezone: 'Asia/Kolkata' 
 });
